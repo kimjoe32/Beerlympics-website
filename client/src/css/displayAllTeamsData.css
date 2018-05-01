@@ -1,0 +1,25 @@
+.table_headers {
+    max-width: 50vw;
+}
+
+.table_headers thead th:first-child{
+    border-radius: 15px 0 0 0 !important;
+}
+.table_headers thead th:last-child {
+    border-radius: 0 15px 0 0 !important;
+}
+.table_headers tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 15px;
+}
+
+.table_headers tbody tr:last-child td:last-child {
+    border-radius: 0 0 15px 0;
+}
+
+.table_headers tr:nth-of-type(odd){
+    background-color: #e0f7fa;
+}
+
+.table_headers thead {
+    border-radius: 0px;
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "teamName": "teamA",
+    "teamMembers": [
+      "Ta1",
+      "Ta2",
+      "Ta3"
+    ],
+    "wins": 4,
+    "losses": 0,
+    "standing": 1
+  },
+  {
+    "teamName": "teamB",
+    "teamMembers": [
+      "Tb1",
+      "Tb2",
+      "Tb3"
+    ],
+    "wins": 3,
+    "losses": 0,
+    "standing": 2
+  },
+  {
+    "teamName": "teamC",
+    "teamMembers": [
+      "Tc1",
+      "Tc2",
+      "Tc3"
+    ],
+    "wins": 4,
+    "losses": 0,
+    "standing": 1
+  }
+]
