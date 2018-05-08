@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import DisplayAllTeamsData from '../containers/displayAllTeamsData';
 import '../css/App.css';
 import { getTeamData } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 
+import DisplayAllTeamsData from '../containers/displayAllTeamsData';
+import AddTeam from '../containers/formContainers/addTeam';
 
 class App extends Component {
   componentDidMount() {
@@ -17,7 +18,7 @@ class App extends Component {
         <BrowserRouter>
 					<div className="container">
 						<Route exact path="/" component={DisplayAllTeamsData}/>
-            
+            <Route path="/add_team" component={AddTeam}/>
 					</div>
 				</BrowserRouter>
       </div>

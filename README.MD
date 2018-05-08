@@ -1,1 +1,1 @@
-This is a website for track a beerlympics (beer olympics) at my house.
+This is a website for tracking a beerlympics (beer olympics) at my house.
