@@ -9,7 +9,7 @@ export default({ input, label, id, fieldName }) => {
             <input {...input} id={ id } type="text" onKeyPress={ e => {
                 if (e.key === 'Enter') e.preventDefault();
             }}/>
-            <label htmlFor={ id }>{ fieldName }</label>
+            <label className="active" htmlFor={ id }>{ fieldName }</label>
         </div>
     )
 }

@@ -7,12 +7,14 @@ import { bindActionCreators } from 'redux';
 
 class AddTeamMembersForm extends Component {
     handleCardChange=(value, type) => {
-        // console.log(value);
+        //when a card is added/deleted, update form state
         if(type === "teamMembers" && value !== []) {
             this.props.change('teamMembers', value);
         }
     }
+
     render() {
+        const { formValues } = this.props;
         return (
         <div>
             <h5><i className="material-icons left">people</i>Add Team Members (Max 4)</h5>
@@ -21,6 +23,7 @@ class AddTeamMembersForm extends Component {
                     name="teamMembers"
                     component={ FormCardAdder }
                     onCardChange={ this.handleCardChange }
+                    existingNames={ (typeof formValues.teamMembers === 'undefined' ? [] : formValues.teamMembers) }
                     type="text"
                 />
             <FwdAndBackBtns prevPage={this.props.previousPage} style={{marginTop: "5px"}}/>    
@@ -30,7 +33,7 @@ class AddTeamMembersForm extends Component {
     }
 }
 
-export default reduxForm({
+ AddTeamMembersForm = reduxForm({
     // validate,
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: false,
@@ -41,6 +44,13 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({change}, dispatch);
 }
 
-AddTeamMembersForm = connect(
+function mapStateToProps(state) {
+    return {
+        formValues: state.form.addTeamForm.values 
+    };
+}
+
+export default connect(
+    mapStateToProps,
     mapDispatchToProps
 )(AddTeamMembersForm);

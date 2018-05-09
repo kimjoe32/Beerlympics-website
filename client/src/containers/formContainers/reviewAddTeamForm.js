@@ -12,7 +12,7 @@ const ReviewAddTeamForm = ({ formValues, onSubmit, previousPage }) => {
         <div>
             <h5><i className="material-icons left">file_upload</i>Team Review</h5>
             <div>
-                {console.log(formValues)}
+                
             </div>
             <button type="button" className="previous red waves-effect btn-flat white-text left hoverable" 
                 onClick={previousPage}

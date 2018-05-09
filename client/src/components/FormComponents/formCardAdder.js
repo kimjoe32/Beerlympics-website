@@ -7,7 +7,8 @@ import React, { Component } from 'react';
 class FormCardAdder extends Component {
     constructor(props) {
         super(props);
-        this.state = {names:[], inputText:''};
+        const { existingNames } = this.props;
+        this.state = {names: existingNames, inputText:''};
     }
 
     renderCards() {
@@ -29,6 +30,8 @@ class FormCardAdder extends Component {
     }
 
     handleEnterPress(e) {
+        //user submits a new card by pressing enter
+
         if (e.key === 'Enter') {
             const newNames = this.state.names.concat(e.target.value);
 
@@ -50,7 +53,7 @@ class FormCardAdder extends Component {
     }
 
     handleCardDelete(card) {
-        
+        //remove card from state and update form state
         const newState = this.state.names.slice();
         if (newState.indexOf(card) > -1) {
             newState.splice(newState.indexOf(card), 1);
@@ -64,8 +67,8 @@ class FormCardAdder extends Component {
         return (
             <div>
                 <input type="text" value={this.state.inputText} 
-                onKeyPress={e => this.handleEnterPress(e)}
-                onChange={e => this.handleChange(e)}/>
+                    onKeyPress={e => this.handleEnterPress(e)}
+                    onChange={e => this.handleChange(e)}/>
                 { this.renderCards() }
             </div>
         )
