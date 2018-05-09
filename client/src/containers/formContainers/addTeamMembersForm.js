@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, change } from 'redux-form';
-import FormChipsAdder from '../../components/FormComponents/formChipsAdder'
+import FormCardAdder from '../../components/FormComponents/formCardAdder'
 import FwdAndBackBtns from '../../components/FormComponents/fwdAndBackBtns'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 class AddTeamMembersForm extends Component {
-    handleChipChange=(value, type) => {
+    handleCardChange=(value, type) => {
         // console.log(value);
         if(type === "teamMembers" && value !== []) {
             this.props.change('teamMembers', value);
@@ -19,8 +19,8 @@ class AddTeamMembersForm extends Component {
             <form onSubmit={this.props.handleSubmit}>
                 <Field fieldName="teamMembers"
                     name="teamMembers"
-                    onChipChange={ this.handleChipChange }
-                    component={ FormChipsAdder }
+                    component={ FormCardAdder }
+                    onCardChange={ this.handleCardChange }
                     type="text"
                 />
             <FwdAndBackBtns prevPage={this.props.previousPage} style={{marginTop: "5px"}}/>    

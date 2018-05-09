@@ -5,7 +5,7 @@ import React from 'react';
 */
 export default ({ onSubmit, prevPage, style }) => {
     return (
-        <div style={style}>
+        <div style={ style }>
             <button type="button" className="previous red waves-effect btn-flat white-text left hoverable" onClick={prevPage}>
                 <i className="material-icons left">keyboard_arrow_left</i>
                 Back
