@@ -35,8 +35,9 @@ class FormCardAdder extends Component {
         if (e.key === 'Enter') {
             const newNames = this.state.names.concat(e.target.value);
 
-            //add name to list if not already in list
-            if(this.state.names.indexOf(e.target.value) === -1) {
+            //add name to list if not already in list and less than 4 inputted names
+            if(this.state.names.indexOf(e.target.value) === -1 &&
+                this.state.names.length < 4) {
                 this.setState({names: newNames});
                 const { onCardChange, fieldName } = this.props;
                 onCardChange(newNames, fieldName);

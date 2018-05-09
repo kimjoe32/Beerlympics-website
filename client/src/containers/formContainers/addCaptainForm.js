@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import FormInputField from '../../components/FormComponents/formInputField';
-import { reduxForm, Field } from 'redux-form';
-import FwdAndBackBtns from '../../components/FormComponents/fwdAndBackBtns'
-import { Autocomplete } from 'react-materialize';
-import FormPhone from '../../components/FormComponents/formPhone';
+import { reduxForm, Field, change } from 'redux-form';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import _ from 'lodash';
+
+import FwdAndBackBtns from '../../components/FormComponents/fwdAndBackBtns';
+import Autocomplete from '../../components/FormComponents/formAutoComplete';
+import FormInputField from '../../components/FormComponents/formInputField';
+import FormPhone from '../../components/FormComponents/formPhone';
 
 /*
     Shows form asking for the captain's information:
@@ -20,6 +23,13 @@ class AddCaptainForm extends Component {
         const countriesMap= _.fromPairs(countriesArray.map(input => [input, null]));
         return countriesMap;
     }
+
+    handleCountrySelection=(value, type) => {
+        if (type==="country" && value !== []) {
+            this.props.change('country', value);
+        }
+    }
+
     render() {
         return (
             <div>
@@ -52,6 +62,7 @@ class AddCaptainForm extends Component {
                                 name="country"
                                 style={{padding:"0", width:"100%"}}
                                 data={this.getCountries()}
+                                handleCountrySelection={ this.handleCountrySelection } 
                             >
                             </Field>
                         </div>
@@ -88,9 +99,17 @@ class AddCaptainForm extends Component {
     }
 }
 
-export default reduxForm({
+AddCaptainForm = reduxForm({
     // validate,
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
     form: 'addTeamForm'
 })(AddCaptainForm);
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({change}, dispatch);
+}
+
+export default connect(
+    mapDispatchToProps
+)(AddCaptainForm);
