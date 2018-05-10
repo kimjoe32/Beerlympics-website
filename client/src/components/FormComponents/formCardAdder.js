@@ -31,13 +31,13 @@ class FormCardAdder extends Component {
 
     handleEnterPress(e) {
         //user submits a new card by pressing enter
-
         if (e.key === 'Enter') {
             const newNames = this.state.names.concat(e.target.value);
 
-            //add name to list if not already in list and less than 4 inputted names
+            //add name to list if not already in list, less than 4 inputted names, make sure not a blank input
             if(this.state.names.indexOf(e.target.value) === -1 &&
-                this.state.names.length < 4) {
+                this.state.names.length < 4 &&
+                e.target.value !== '') {
                 this.setState({names: newNames});
                 const { onCardChange, fieldName } = this.props;
                 onCardChange(newNames, fieldName);

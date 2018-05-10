@@ -3,7 +3,6 @@ import AskIfCaptain from './askIfCaptain';
 import AddCaptainForm from './addCaptainForm';
 import AddTeamMembersForm from './addTeamMembersForm';
 import ReviewAddTeamForm from './reviewAddTeamForm';
-import PropTypes from 'prop-types';
 
 /*
 	Controls the wizard form- which page is shown
@@ -27,9 +26,7 @@ class AddTeamForm extends Component {
 	}
 
     render() {
-		const { onSubmit } = this.props;
    		const { page } = this.state;
-
 		return (
 			<div>
 				{page === 1 && <AskIfCaptain onSubmit={this.nextPage} />}
@@ -45,18 +42,11 @@ class AddTeamForm extends Component {
 				)}
 				{page === 4 && (<ReviewAddTeamForm  
 					previousPage={this.previousPage}
-					onSubmit={onSubmit} />
+					 />
 				)}
 			</div>
 		);
     }
 }
-AddTeamForm.propTypes = {
-	onSubmit: PropTypes.func.isRequired
-}
-// function validate(values) {
-// 	const errors = {};
-// 	return errors;
-// }
 
 export default AddTeamForm;

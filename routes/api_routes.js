@@ -20,4 +20,7 @@ module.exports = app => {
     const data = await require(utils_locations.TEAM_DATA);
     res.json(data);
   });
+  app.post('/api/addNewTeam', async (req, res) => {
+    console.log("received");
+  });
 }

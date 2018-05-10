@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { reduxForm } from 'redux-form'
 import * as actions from '../../actions';
 
 
 /*
     Let user review all data before submitting
 */
-const ReviewAddTeamForm = ({ formValues, onSubmit, previousPage }) => {
+var ReviewAddTeamForm = ({ formValues, previousPage,sendNewTeamData }) => {
     function renderReviewField() {
         const values = [formValues.firstName + ' ' + formValues.lastName,
                         formValues.country,
@@ -36,12 +37,12 @@ const ReviewAddTeamForm = ({ formValues, onSubmit, previousPage }) => {
                 <i className="material-icons left">keyboard_arrow_left</i>
                 Back
             </button>
-            <button
-				onClick={() => onSubmit(formValues)}
-				className="green btn-flat right white-text">
-				Submit
-				<i className="material-icons right">email</i>
-			</button>
+            <button className="green btn-flat right white-text waves-effect hoverable"
+                onClick={() => sendNewTeamData(formValues) } 
+            >
+                Submit
+                <i className="material-icons right">email</i>
+            </button>
         </div>
     );
 }
@@ -51,5 +52,12 @@ function mapStateToProps(state) {
 		formValues: state.form.addTeamForm.values
 	};
 }
+
+ReviewAddTeamForm = reduxForm({
+    form: 'addTeamForm',
+    destroyOnUnmount: false,
+    forceUnregisterOnUnmount: true
+    // validate
+})(ReviewAddTeamForm)
 
 export default connect(mapStateToProps, actions)(withRouter(ReviewAddTeamForm));
