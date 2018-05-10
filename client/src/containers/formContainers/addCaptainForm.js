@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { reduxForm, Field, change } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import _ from 'lodash';
 
 import FwdAndBackBtns from '../../components/FormComponents/fwdAndBackBtns';
 import Autocomplete from '../../components/FormComponents/formAutoComplete';
 import FormInputField from '../../components/FormComponents/formInputField';
 import FormPhone from '../../components/FormComponents/formPhone';
+import validate from '../../utils/validateAddTeamFormp2';
+import { getCountriesObj } from '../../utils/utilities';
 
 /*
     Shows form asking for the captain's information:
@@ -17,13 +18,7 @@ import FormPhone from '../../components/FormComponents/formPhone';
         Phone Number
 */
 class AddCaptainForm extends Component {
-    getCountries() {
-        const iso3311a2 = require('iso-3166-1-alpha-2');
-        const countriesArray = iso3311a2.getCountries();
-        const countriesMap= _.fromPairs(countriesArray.map(input => [input, null]));
-        return countriesMap;
-    }
-
+    
     handleCountrySelection=(value, type) => {
         if (type==="country" && value !== []) {
             this.props.change('country', value);
@@ -61,7 +56,7 @@ class AddCaptainForm extends Component {
                                 onKeyPress={ e => {if (e.key === 'Enter') e.preventDefault(); }}
                                 name="country"
                                 style={{padding:"0", width:"100%"}}
-                                data={this.getCountries()}
+                                data={getCountriesObj()}
                                 handleCountrySelection={ this.handleCountrySelection } 
                             >
                             </Field>
@@ -100,7 +95,7 @@ class AddCaptainForm extends Component {
 }
 
 AddCaptainForm = reduxForm({
-    // validate,
+    validate,
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
     form: 'addTeamForm'

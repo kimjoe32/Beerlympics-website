@@ -24,7 +24,7 @@ class AddTeamForm extends Component {
 	previousPage() {
 		this.setState({ page: this.state.page - 1 });
 	}
-
+	
     render() {
    		const { page } = this.state;
 		return (
@@ -38,11 +38,12 @@ class AddTeamForm extends Component {
 				)}
 				{page === 3 && (<AddTeamMembersForm  
 					previousPage={this.previousPage}
-					onSubmit={this.nextPage} />
+					onSubmit={this.nextPage}
+					/>
 				)}
 				{page === 4 && (<ReviewAddTeamForm  
 					previousPage={this.previousPage}
-					 />
+					/>
 				)}
 			</div>
 		);

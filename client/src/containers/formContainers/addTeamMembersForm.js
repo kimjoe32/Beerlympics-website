@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, change } from 'redux-form';
-import FormCardAdder from '../../components/FormComponents/formCardAdder'
-import FwdAndBackBtns from '../../components/FormComponents/fwdAndBackBtns'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import FormCardAdder from '../../components/FormComponents/formCardAdder';
+import FwdAndBackBtns from '../../components/FormComponents/fwdAndBackBtns';
+import validate from '../../utils/validateAddTeamFormp3';
 class AddTeamMembersForm extends Component {
     handleCardChange=(value, type) => {
         //when a card is added/deleted, update form state
@@ -34,7 +35,7 @@ class AddTeamMembersForm extends Component {
 }
 
  AddTeamMembersForm = reduxForm({
-    // validate,
+    validate,
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: false,
     form: 'addTeamForm'

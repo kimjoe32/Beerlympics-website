@@ -10,7 +10,6 @@ export const getTeamData = () => async dispatch => {
 }
 
 export const sendNewTeamData = (teamData) => async dispatch => {
-    console.log('sendNewTeamData', teamData);
     const res = await Axios.post("/api/addNewTeam",teamData);
     dispatch({
         type:SEND_NEW_TEAM_DATA,

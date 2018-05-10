@@ -65,11 +65,15 @@ class FormCardAdder extends Component {
     }
 
     render() {
+        const { touched, error } = this.props.meta;
         return (
             <div>
                 <input type="text" value={this.state.inputText} 
                     onKeyPress={e => this.handleEnterPress(e)}
                     onChange={e => this.handleChange(e)}/>
+                <div className="red-text" style = {{ marginBottom: '20px' }}>
+                    {touched && error}
+                </div>
                 { this.renderCards() }
             </div>
         )

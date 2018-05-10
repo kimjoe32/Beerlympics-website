@@ -20,7 +20,11 @@ module.exports = app => {
     const data = await require(utils_locations.TEAM_DATA);
     res.json(data);
   });
+
+  /*
+    Client posted a team to save
+  */
   app.post('/api/addNewTeam', async (req, res) => {
-    console.log("received");
+    console.log(req.body);
   });
 }
