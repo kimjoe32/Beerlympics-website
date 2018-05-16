@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import '../css/displayTeamData.css';
+import { getCode } from '../utils/utilities';
 
 class DisplayTeamData extends Component {
 
@@ -37,8 +38,7 @@ class DisplayTeamData extends Component {
         NOTE: "Germany" is a placeholder
     */
     getFlag() {
-        var isoCountryCodes = require('iso-3166-1-alpha-2'); //translating iso code
-        const countryName = isoCountryCodes.getCode("Germany"); //this.props.teamName;
+        let countryName = getCode(this.props.teamName);
         return (
             <ReactCountryFlag code={countryName} svg flagProps={{fontSize: "4vw",}}/>
         )

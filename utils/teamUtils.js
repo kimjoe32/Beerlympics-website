@@ -5,13 +5,13 @@ module.exports = {
         Sort by team wins and update team's standings
     */
     calculateStandings: function() {
-        var teams = this.getTeamObject();
+        let teams = this.getTeamObject();
         teams.sort((a,b) => { return b.wins - a.wins});
         //set first team to be in first place because we need to access previous team in for loop
         teams[0].standing = 1;
         
-        var standingPlace = 1;
-        for (var i = 1; i < teams.length; i++) {
+        let standingPlace = 1;
+        for (let i = 1; i < teams.length; i++) {
             if (teams[i].wins < teams[i - 1].wins) {
                 standingPlace++;
                 teams[i].standing = standingPlace;
@@ -38,8 +38,8 @@ module.exports = {
         Object containing all teams
     */
     getTeamObject: function() {
-        var file = require(locations.TEAM_DATA_EXT);
-        var teams = [];
+        let file = require(locations.TEAM_DATA_EXT);
+        let teams = [];
         for(a in file) {
             teams.push(file[a])
         }
@@ -50,7 +50,7 @@ module.exports = {
         Add team to data file
     */
     addTeam: function(teamInfo) {
-        var teams = this.getTeamObject();
+        let teams = this.getTeamObject();
         
         teams.push({
             "teamName": teamInfo.country,

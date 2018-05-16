@@ -8,7 +8,7 @@ import * as actions from '../../actions';
 /*
     Let user review all data before submitting
 */
-var ReviewAddTeamForm = ({ formValues, previousPage,sendNewTeamData }) => {
+let ReviewAddTeamForm = ({ formValues, previousPage,sendNewTeamData }) => {
     function renderReviewField() {
         const values = [formValues.firstName + ' ' + formValues.lastName,
                         formValues.country,
