@@ -6,7 +6,7 @@ import { getCode } from '../utils/utilities';
 class DisplayTeamData extends Component {
 
     /*
-        render a table displaying data for a single team
+        Render a table displaying data for a single team
     */
     render() {
         return (

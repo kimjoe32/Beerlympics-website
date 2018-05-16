@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { reduxForm } from 'redux-form'
 import * as actions from '../../actions';
+
 
 
 /*
@@ -37,12 +38,13 @@ let ReviewAddTeamForm = ({ formValues, previousPage,sendNewTeamData }) => {
                 <i className="material-icons left">keyboard_arrow_left</i>
                 Back
             </button>
-            <button className="green btn-flat right white-text waves-effect hoverable"
+            <Link to="/" 
+                className="green btn-flat right white-text waves-effect hoverable"
                 onClick={() => sendNewTeamData(formValues) } 
             >
                 Submit
                 <i className="material-icons right">email</i>
-            </button>
+            </Link>
         </div>
     );
 }
@@ -60,4 +62,4 @@ ReviewAddTeamForm = reduxForm({
     // validate
 })(ReviewAddTeamForm)
 
-export default connect(mapStateToProps, actions)(withRouter(ReviewAddTeamForm));
+export default connect(mapStateToProps, actions)(ReviewAddTeamForm);

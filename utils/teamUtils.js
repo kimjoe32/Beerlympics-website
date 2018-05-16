@@ -1,12 +1,15 @@
 const locations = require('./locations');
-
+const fs = require('fs');
 module.exports = {
     /*
         Sort by team wins and update team's standings
     */
-    calculateStandings: function() {
-        let teams = this.getTeamObject();
+    calculateStandings: function(teams) {
+        
+        if (teams) {return;}
+        
         teams.sort((a,b) => { return b.wins - a.wins});
+        
         //set first team to be in first place because we need to access previous team in for loop
         teams[0].standing = 1;
         
@@ -28,8 +31,7 @@ module.exports = {
         Write to team_data file
     */
     writeToTeamDataFile: function(newFile) {
-        const fs = require('fs');
-        fs.writeFile(locations.TEAM_DATA_EXT, JSON.stringify(newFile, null, 2), function (err) {
+        fs.writeFileSync(locations.TEAM_DATA_EXT, JSON.stringify(newFile, null, 2), function (err) {
             if (err) return err;
         });
     },
@@ -38,10 +40,15 @@ module.exports = {
         Object containing all teams
     */
     getTeamObject: function() {
-        let file = require(locations.TEAM_DATA_EXT);
+        const filesize=fs.statSync(locations.TEAM_DATA_EXT).size;
         let teams = [];
-        for(a in file) {
-            teams.push(file[a])
+        //if file not empty, add teams to teams array
+        if (filesize > 0) {
+            let data = JSON.parse(fs.readFileSync(locations.TEAM_DATA_EXT, 'utf8'));
+
+            for(a in data) {
+                teams.push(data[a])
+            }
         }
         return teams;
     },
@@ -50,7 +57,14 @@ module.exports = {
         Add team to data file
     */
     addTeam: function(teamInfo) {
+        // make sure team isn't already added. 
+        // only for QA testing, team input form should have async validation
         let teams = this.getTeamObject();
+        for (let i = 0; i < teams.length; i++) {
+            if (teams[i].teamName === teamInfo.country) {
+                return;
+            }
+        }
         
         teams.push({
             "teamName": teamInfo.country,

@@ -16,8 +16,9 @@ module.exports = app => {
     Return json file containing team states
   */
   app.get('/api/getTeamData', async (req, res) => {
-    utils_team.calculateStandings();
-    const data = await require(utils_locations.TEAM_DATA);
+    let data = await utils_team.getTeamObject();
+    utils_team.calculateStandings(data);
+    
     res.json(data);
   });
 
