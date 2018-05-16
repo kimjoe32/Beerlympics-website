@@ -8,7 +8,7 @@
     });
   }
 */
-const utils_standings = require('../utils/standings');
+const utils_team = require('../utils/teamUtils');
 const utils_locations = require('../utils/locations');
 
 module.exports = app => {
@@ -16,7 +16,7 @@ module.exports = app => {
     Return json file containing team states
   */
   app.get('/api/getTeamData', async (req, res) => {
-    utils_standings.calculateStandings();
+    utils_team.calculateStandings();
     const data = await require(utils_locations.TEAM_DATA);
     res.json(data);
   });
@@ -25,6 +25,11 @@ module.exports = app => {
     Client posted a team to save
   */
   app.post('/api/addNewTeam', async (req, res) => {
-    console.log(req.body);
+    const err = utils_team.addTeam(req.body);
+    if (!err) {
+      res.send('Successfully submitted a team');
+    } else {
+      res.send('Error occured adding team');
+    }
   });
 }
