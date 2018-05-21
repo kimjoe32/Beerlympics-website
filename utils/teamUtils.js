@@ -5,7 +5,6 @@ module.exports = {
         Sort by team wins and update team's standings
     */
     calculateStandings: function(teams) {
-        
         if (teams) {return;}
         
         teams.sort((a,b) => { return b.wins - a.wins});
