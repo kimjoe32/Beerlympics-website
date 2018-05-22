@@ -1,12 +1,10 @@
-import { SEND_NEW_TEAM_DATA } from '../actions/types';
+import { GET_EVENTS } from '../actions/types';
 
 export default function (state = [], action) {
     switch (action.type) {
-        case SEND_NEW_TEAM_DATA:
-            //return team data
+        case GET_EVENTS:
             return action.payload.data;
         default:
-            //no team found
             return state; 
     }
 }

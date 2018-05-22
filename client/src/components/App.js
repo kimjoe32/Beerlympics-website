@@ -3,19 +3,18 @@ import '../css/App.css';
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import DisplayAllTeamsData from '../containers/displayAllTeamsData';
+import DisplayAllData from './displayAllData';
 import AddTeam from '../containers/formContainers/addTeam';
-import NavBarRight from './navBarRight';
+import NavBar from './navBar';
 
 class App extends Component {
-  
   render() {
     return (
       <div className="App white">
         <BrowserRouter>
 					<div className="container">
-            <NavBarRight />
-						<Route exact path="/" component={DisplayAllTeamsData}/>
+            <NavBar />
+						<Route exact path="/" component={DisplayAllData}/>
             <Route path="/add_team" component={AddTeam}/>
 					</div>
 				</BrowserRouter>

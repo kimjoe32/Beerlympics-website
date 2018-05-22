@@ -10,6 +10,7 @@
 */
 const utils_team = require('../utils/teamUtils');
 const utils_locations = require('../utils/locations');
+const utils_events = require('../utils/eventsUtils');
 
 module.exports = app => {
   /*
@@ -32,5 +33,10 @@ module.exports = app => {
     } else {
       res.send('Error occured adding team');
     }
+  });
+
+  app.get('/api/getEvents', async(req, res) => {
+    let data = await utils_events.getEventsObject();
+    res.json(data);
   });
 }

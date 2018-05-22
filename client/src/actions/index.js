@@ -1,4 +1,4 @@
-import { GET_TEAM_DATA, SEND_NEW_TEAM_DATA } from './types';
+import { GET_TEAM_DATA, SEND_NEW_TEAM_DATA, GET_EVENTS } from './types';
 import Axios from 'axios';
 
 export const getTeamData = () => async dispatch => {
@@ -13,6 +13,14 @@ export const sendNewTeamData = (teamData) => async dispatch => {
     const res = await Axios.post("/api/addNewTeam",teamData);
     dispatch({
         type:SEND_NEW_TEAM_DATA,
+        payload: res
+    });
+}
+
+export const getEvents = () => async dispatch => {
+    const res = await Axios.get("/api/getEvents");
+    dispatch({
+        type: GET_EVENTS,
         payload: res
     });
 }
