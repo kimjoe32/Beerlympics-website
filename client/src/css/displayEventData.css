@@ -1,0 +1,8 @@
+.eventRow {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.eventLeftCol {
+    padding-right: 0px !important;
+}

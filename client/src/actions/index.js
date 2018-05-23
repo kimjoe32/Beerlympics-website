@@ -1,4 +1,4 @@
-import { GET_TEAM_DATA, SEND_NEW_TEAM_DATA, GET_EVENTS } from './types';
+import { GET_TEAM_DATA, SEND_NEW_TEAM_DATA, GET_EVENTS, SELECT_EVENT } from './types';
 import Axios from 'axios';
 
 export const getTeamData = () => async dispatch => {
@@ -23,4 +23,11 @@ export const getEvents = () => async dispatch => {
         type: GET_EVENTS,
         payload: res
     });
+}
+
+export const selectEvent = (event) => {
+    return {
+        type:SELECT_EVENT,
+        payload: event
+    };
 }

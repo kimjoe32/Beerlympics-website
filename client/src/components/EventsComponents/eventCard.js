@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+const cardStyle = {
+    borderRadius: '0px',
+    margin:"0"
+}
 class EventCard extends Component {
     showWinner(winnerName) {
         return (
@@ -7,12 +11,15 @@ class EventCard extends Component {
         );
     }
     render() {
-        const {eventName, winner} = this.props;
+        const {eventName, winner, onClick, isSelected} = this.props;
         return (
-        <div onClick={() => console.log('clicked', eventName)} className="card-panel teal">
-            <span className="white-text">{eventName}</span>
-            {winner!=="" && this.showWinner(winner)}
-        </div>
+            <div className={`card-panel ${isSelected? "blue": "teal"}`}
+                onClick={onClick}
+                style={cardStyle}
+            >
+                <span className="white-text">{eventName}</span>
+                {winner!=="" && this.showWinner(winner)}
+            </div>
         );
     }
 }

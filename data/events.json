@@ -1,6 +1,22 @@
 [
     {
-        "eventName": "Beer Pong",
+        "eventName": "Event 1",
+        "winner": "asdf"
+    },
+    {
+        "eventName": "Event 2",
+        "winner": ""
+    },
+    {
+        "eventName": "Event 3",
+        "winner": ""
+    },
+    {
+        "eventName": "Event 4",
+        "winner": "asdf"
+    },
+    {
+        "eventName": "Event 5",
         "winner": "asdf"
     }
   ]
