@@ -57,13 +57,11 @@ module.exports = {
     */
     addTeam: function(teamInfo) {
         // make sure team isn't already added. 
-        // only for QA testing, team input form should have async validation
+        
         let teams = this.getTeamObject();
-        for (let i = 0; i < teams.length; i++) {
-            if (teams[i].teamName === teamInfo.country) {
-                return;
-            }
-        }
+        // only for QA testing, team input form should have async validation
+        if (!this.isCountryAvail(teamInfo.country)) 
+            return 'country is taken'; 
         
         teams.push({
             "teamName": teamInfo.country,
@@ -72,6 +70,20 @@ module.exports = {
             "losses": 0,
             "standing": 0
         });
-        return this.writeToTeamDataFile(teams);
-    }
+        this.writeToTeamDataFile(teams);
+        return;
+    },
+
+    /*
+        Check if the country name is in use
+    */
+   isCountryAvail: function(countryName) {
+        const teams = this.getTeamObject();
+        for (let i = 0; i < teams.length; i++) {
+            if (teams[i].teamName === countryName) {
+                return false;
+            }
+        }
+        return true;
+   }
 }

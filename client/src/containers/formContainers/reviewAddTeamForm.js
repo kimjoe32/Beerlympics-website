@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 import { reduxForm } from 'redux-form'
 import * as actions from '../../actions';
 
-
-
 /*
     Let user review all data before submitting
 */
-let ReviewAddTeamForm = ({ formValues, previousPage,sendNewTeamData }) => {
+let ReviewAddTeamForm = ({ formValues, previousPage, sendNewTeamData }) => {
     function renderReviewField() {
         const values = [formValues.firstName + ' ' + formValues.lastName,
                         formValues.country,

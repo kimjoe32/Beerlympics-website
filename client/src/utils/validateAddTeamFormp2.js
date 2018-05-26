@@ -13,7 +13,7 @@ const validate = values => {
     if (!values.country) {
         errors.country = 'Required'
     }
-     else if (getCountriesArr().indexOf(values.country) === -1) {
+    else if (getCountriesArr().indexOf(values.country) === -1) {
         //check if a valid country
         errors.country = 'Not a real place';
     }
@@ -37,5 +37,4 @@ const validate = values => {
     }
     return errors;
 }
-  
 export default validate;

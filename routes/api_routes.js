@@ -26,17 +26,34 @@ module.exports = app => {
   /*
     Client posted a team to save
   */
-  app.post('/api/addNewTeam', async (req, res) => {
+  app.post('/api/addNewTeam', (req, res) => {
     const err = utils_team.addTeam(req.body);
     if (!err) {
       res.send('Successfully submitted a team');
     } else {
-      res.send('Error occured adding team');
+      res.send(err);
     }
   });
-
+  
+  /*
+    Get a list of events (contains name and results)
+  */
   app.get('/api/getEvents', async(req, res) => {
     let data = await utils_events.getEventsObject();
     res.json(data);
+  });
+
+  /* 
+    User requested to start game.
+    If we can start game, return success, and event schedule
+  */
+  app.get('/api/startGame', async (req, res) => {
+
+    res.send('Success');  
+  });
+
+  app.post('/api/isCountryAvail', async(req, res) => {
+    const taken = utils_team.isCountryAvail(req.body.country);
+    res.send(taken);
   });
 }

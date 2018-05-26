@@ -4,6 +4,7 @@ import '../css/App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import DisplayAllData from './displayAllData';
+import StartGame from '../containers/startGame';
 import AddTeam from '../containers/formContainers/addTeam';
 import NavBar from './navBar';
 
@@ -14,8 +15,9 @@ class App extends Component {
         <BrowserRouter>
 					<div className="container">
             <NavBar />
-						<Route exact path="/" component={DisplayAllData}/>
-            <Route path="/add_team" component={AddTeam}/>
+						<Route exact path="/" component={DisplayAllData} />
+            <Route path="/start_game" component={StartGame} />
+            <Route path="/add_team" component={AddTeam} />
 					</div>
 				</BrowserRouter>
       </div>

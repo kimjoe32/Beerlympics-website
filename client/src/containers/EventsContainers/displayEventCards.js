@@ -31,7 +31,6 @@ class DisplayEventCards extends Component {
                     <EventCard key={events.eventName} 
                         eventName={events.eventName} 
                         isSelected={selectedEvent === events.eventName}
-                        winner={events.winner}               
                         onClick={() => selectEvent(events.eventName)}
                     />
                 );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DisplayEventCards from '../../containers/EventsContainers/displayEventCards';
-import DisplayEventTree from '../../containers/EventsContainers/displayEventTree';
+import DisplaySelectedEvent from '../../containers/EventsContainers/displaySelectedEvent';
 import '../../css/displayEventData.css';
   
 class DisplayEventData extends Component {
@@ -10,8 +10,8 @@ class DisplayEventData extends Component {
                 <div className="col s4 eventLeftCol">
                     <DisplayEventCards />
                 </div>
-                <div className="col s8 blue">
-                    <DisplayEventTree  />
+                <div className="col s8 blue lighten-3">
+                    <DisplaySelectedEvent  />
                 </div>
             </div>
         );

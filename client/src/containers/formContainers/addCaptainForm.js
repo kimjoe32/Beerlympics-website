@@ -9,7 +9,7 @@ import FormInputField from '../../components/FormComponents/formInputField';
 import FormPhone from '../../components/FormComponents/formPhone';
 import validate from '../../utils/validateAddTeamFormp2';
 import { getCountriesObj } from '../../utils/utilities';
-
+import { asyncValCountryName } from '../../actions/index';
 /*
     Shows form asking for the captain's information:
         Name
@@ -96,6 +96,8 @@ class AddCaptainForm extends Component {
 
 AddCaptainForm = reduxForm({
     validate,
+    asyncValidate: asyncValCountryName,
+    asyncBlurFields: ['country'],
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
     form: 'addTeamForm'

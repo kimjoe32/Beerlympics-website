@@ -11,14 +11,13 @@ class EventCard extends Component {
         );
     }
     render() {
-        const {eventName, winner, onClick, isSelected} = this.props;
+        const {eventName, onClick, isSelected} = this.props;
         return (
-            <div className={`card-panel ${isSelected? "blue": "teal"}`}
+            <div className={`card-panel ${isSelected? "blue lighten-3": "teal"}`}
                 onClick={onClick}
                 style={cardStyle}
             >
                 <span className="white-text">{eventName}</span>
-                {winner!=="" && this.showWinner(winner)}
             </div>
         );
     }

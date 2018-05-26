@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class DisplayEventTree extends Component {
+class DisplaySelectedEvent extends Component {
     render() {
         if (!this.props.selectedEvent) {
             return <div>No Event Selected</div>
@@ -14,4 +14,4 @@ class DisplayEventTree extends Component {
 function mapStateToProps({ selectedEvent }) {
     return { selectedEvent };
 }
-export default connect(mapStateToProps)(DisplayEventTree);
+export default connect(mapStateToProps)(DisplaySelectedEvent);

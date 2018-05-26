@@ -1,6 +1,7 @@
 nav {
     background-color: transparent !important;
     box-shadow: 0px 0px !important; 
+    white-space:nowrap !important;
 }
 nav ul a {
     color: black !important;
