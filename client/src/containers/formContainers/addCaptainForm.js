@@ -7,9 +7,8 @@ import FwdAndBackBtns from '../../components/FormComponents/fwdAndBackBtns';
 import Autocomplete from '../../components/FormComponents/formAutoComplete';
 import FormInputField from '../../components/FormComponents/formInputField';
 import FormPhone from '../../components/FormComponents/formPhone';
-import validate from '../../utils/validateAddTeamFormp2';
+import { validate, asyncValCountryName } from '../../utils/validateAddTeamFormp2';
 import { getCountriesObj } from '../../utils/utilities';
-import { asyncValCountryName } from '../../actions/index';
 /*
     Shows form asking for the captain's information:
         Name

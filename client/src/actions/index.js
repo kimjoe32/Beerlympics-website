@@ -44,16 +44,3 @@ export const startGame = () => async dispatch => {
         payload:res
     });
 }
-
-export const asyncValCountryName = (values, dispatch)=>  {
-    //returns if country name is available
-    const { country } = values;
-    console.log(country);
-    const response = Axios.post('/api/isCountryAvail', {country});
-    return response.then(response => {
-        console.log(response);
-        if (!response.data) {
-            return new Promise( {country: 'Country is taken'});
-        }        
-    });
-}

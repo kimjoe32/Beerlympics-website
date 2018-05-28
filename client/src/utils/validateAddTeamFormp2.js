@@ -1,6 +1,7 @@
 import { getCountriesArr } from './utilities';
+import Axios from 'axios';
 
-const validate = values => {
+export const validate = values => {
     const errors = {};
 
     if (!values.firstName) {
@@ -37,4 +38,22 @@ const validate = values => {
     }
     return errors;
 }
-export default validate;
+
+export const asyncValCountryName = (values, dispatch)=>  {
+    //returns if country name is available
+    const { country } = values;
+    console.log(country);
+    return Axios.post('/api/isCountryAvail', {country})
+        .then(response => {
+            console.log(response);
+            return new Promise( (resolve, reject) => {
+                if (!response.data) {
+                    return reject({country: 'Country is taken'});
+                    //reject(({country: 'Country is taken'}));
+                }
+                else {
+                    return resolve();
+                }
+            });        
+    });
+}

@@ -54,6 +54,7 @@ module.exports = app => {
 
   app.post('/api/isCountryAvail', async(req, res) => {
     const taken = utils_team.isCountryAvail(req.body.country);
+    console.log(req.body.country, taken);
     res.send(taken);
   });
 }
