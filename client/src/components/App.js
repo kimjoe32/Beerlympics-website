@@ -5,7 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import DisplayAllData from './displayAllData';
 import StartGame from '../containers/startGame';
-import AddTeam from '../containers/formContainers/addTeam';
+import AddTeam from './FormComponents/addTeam';
 import NavBar from './navBar';
 
 class App extends Component {
@@ -18,6 +18,7 @@ class App extends Component {
 						<Route exact path="/" component={DisplayAllData} />
             <Route path="/start_game" component={StartGame} />
             <Route path="/add_team" component={AddTeam} />
+            <Route path="/edit_team" render={() => <AddTeam />} />
 					</div>
 				</BrowserRouter>
       </div>

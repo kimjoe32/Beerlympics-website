@@ -2,12 +2,29 @@
   {
     "teamName": "Afghanistan",
     "teamMembers": [
-      "joe joeson",
-      "john johnson",
-      "jake jakeson"
+      "fds fdsa"
     ],
     "wins": 0,
     "losses": 0,
-    "standing": 0
+    "standing": 0,
+    "captainInfo": {
+      "captainName": "fsafaf afaga",
+      "captainEmail": "dfas@afs.com",
+      "captainPhone": "1234567"
+    }
+  },
+  {
+    "teamName": "Israel",
+    "teamMembers": [
+      "sfsf fasd"
+    ],
+    "wins": 0,
+    "losses": 0,
+    "standing": 0,
+    "captainInfo": {
+      "captainName": "fdsf fasf",
+      "captainEmail": "sgsgs@asdf.com",
+      "captainPhone": "1234567"
+    }
   }
 ]

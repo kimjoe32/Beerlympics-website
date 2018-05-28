@@ -15,7 +15,7 @@ class DisplayAllTeamsData extends Component {
         return (
             <DisplayTeamData key={team.teamName}
                 teamName={team.teamName} 
-                teamMembers={team.teamMembers}
+                teamMembers={team.teamMembers.concat([team.captainInfo.captainName])}
                 wins={team.wins}
                 losses={team.losses}
                 standing={team.standing}

@@ -8,18 +8,6 @@ class DisplayEventCards extends Component {
         this.props.getEvents();
     }
 
-    renderCards(events) {
-        if (!events) return;
-        
-        return (
-            <EventCard key={events.eventName} 
-                eventName={events.eventName} 
-                winner={events.winner}               
-                onClick={() => {this.props.selectEvent(events.eventName);console.log('click');}}
-            />
-        );
-    }
-
     render() {
         const {selectEvent, selectedEvent} = this.props;
         return (

@@ -57,18 +57,23 @@ module.exports = {
     */
     addTeam: function(teamInfo) {
         // make sure team isn't already added. 
-        
         let teams = this.getTeamObject();
         // only for QA testing, team input form should have async validation
         if (!this.isCountryAvail(teamInfo.country)) 
             return 'country is taken'; 
         
+        const captainName= teamInfo.firstName + ' ' + teamInfo.lastName;
         teams.push({
             "teamName": teamInfo.country,
             "teamMembers": teamInfo.teamMembers,
             "wins": 0,
             "losses": 0,
-            "standing": 0
+            "standing": 0,
+            "captainInfo": {
+                "captainName": captainName,
+                "captainEmail": teamInfo.email,
+                "captainPhone": teamInfo.phone
+            }
         });
         this.writeToTeamDataFile(teams);
         return;
@@ -77,7 +82,7 @@ module.exports = {
     /*
         Check if the country name is in use
     */
-   isCountryAvail: function(countryName) {
+    isCountryAvail: function(countryName) {
         const teams = this.getTeamObject();
         for (let i = 0; i < teams.length; i++) {
             if (teams[i].teamName === countryName) {
@@ -85,5 +90,9 @@ module.exports = {
             }
         }
         return true;
-   }
+    },
+
+    isTeamFileEmpty: function() {
+        
+    }
 }

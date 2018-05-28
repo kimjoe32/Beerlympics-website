@@ -42,10 +42,10 @@ export const validate = values => {
 export const asyncValCountryName = (values, dispatch)=>  {
     //returns if country name is available
     const { country } = values;
-    console.log(country);
+    // console.log(country);
     return Axios.post('/api/isCountryAvail', {country})
         .then(response => {
-            console.log(response);
+            // console.log(response);
             return new Promise( (resolve, reject) => {
                 if (!response.data) {
                     return reject({country: 'Country is taken'});

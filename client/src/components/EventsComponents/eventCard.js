@@ -5,11 +5,6 @@ const cardStyle = {
     margin:"0"
 }
 class EventCard extends Component {
-    showWinner(winnerName) {
-        return (
-            <div className="white-text"> winner: {winnerName} </div>
-        );
-    }
     render() {
         const {eventName, onClick, isSelected} = this.props;
         return (

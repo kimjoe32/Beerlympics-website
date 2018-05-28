@@ -2,7 +2,7 @@ import { GET_TEAM_DATA,
     SEND_NEW_TEAM_DATA, 
     GET_EVENTS, 
     SELECT_EVENT,
-    START_GAME } from './types';
+    START_GAME} from './types';
 import Axios from 'axios';
 
 export const getTeamData = () => async dispatch => {

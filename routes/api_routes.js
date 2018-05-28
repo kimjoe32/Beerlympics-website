@@ -29,6 +29,7 @@ module.exports = app => {
   app.post('/api/addNewTeam', (req, res) => {
     const err = utils_team.addTeam(req.body);
     if (!err) {
+      console.log(utils_team.getTeamObject());
       res.send('Successfully submitted a team');
     } else {
       res.send(err);
@@ -50,6 +51,10 @@ module.exports = app => {
   app.get('/api/startGame', async (req, res) => {
 
     res.send('Success');  
+  });
+
+  app.get('/api/deleteTeam', async (req, res) => {
+
   });
 
   app.post('/api/isCountryAvail', async(req, res) => {

@@ -17,7 +17,6 @@ import { getCountriesObj } from '../../utils/utilities';
         Phone Number
 */
 class AddCaptainForm extends Component {
-    
     handleCountrySelection=(value, type) => {
         if (type==="country" && value !== []) {
             this.props.change('country', value);

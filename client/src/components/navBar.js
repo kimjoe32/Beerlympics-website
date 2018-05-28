@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dropdown, Icon} from 'react-materialize';
+import { Dropdown, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import '../css/navBar.css';
 import 'materialize-css';
@@ -36,7 +36,7 @@ class NavBar extends Component {
                                     
                                 <div className="divider"></div>
 
-                                <Link to="/add_team" >
+                                <Link to="/edit_team" >
                                     <Icon left>edit</Icon>Edit a Team
                                 </Link>
                             </Dropdown>
