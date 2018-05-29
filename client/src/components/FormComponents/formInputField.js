@@ -3,9 +3,10 @@ import React from 'react';
     Basic Input field
     Ignores if user presses enter
 */
-export default({ input, label, id, fieldName, meta: { error, touched } }) => {
+export default({ input, label, id, fieldName, isEditing, meta: { error, touched } }) => {
+    const isActive = isEditing ? 'active' : '';
     return (
-        <div className="input-field">
+        <div className={`input-field ${isActive}`} >
             <input {...input} id={ id } type="text" onKeyPress={ e => {
                 if (e.key === 'Enter') e.preventDefault();
             }}/>

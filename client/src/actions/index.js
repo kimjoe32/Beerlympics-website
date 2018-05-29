@@ -2,7 +2,8 @@ import { GET_TEAM_DATA,
     SEND_NEW_TEAM_DATA, 
     GET_EVENTS, 
     SELECT_EVENT,
-    START_GAME} from './types';
+    START_GAME,
+    SELECTED_EDIT_TEAM } from './types';
 import Axios from 'axios';
 
 export const getTeamData = () => async dispatch => {
@@ -43,4 +44,11 @@ export const startGame = () => async dispatch => {
         type:START_GAME,
         payload:res
     });
+}
+
+export const selectTeam = (team) => {
+    return {
+        type: SELECTED_EDIT_TEAM,
+        payload: team
+    };
 }

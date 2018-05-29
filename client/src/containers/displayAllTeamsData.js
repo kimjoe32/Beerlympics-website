@@ -19,6 +19,7 @@ class DisplayAllTeamsData extends Component {
                 wins={team.wins}
                 losses={team.losses}
                 standing={team.standing}
+                captain={team.captainInfo.captainName}
             />
         );
     }

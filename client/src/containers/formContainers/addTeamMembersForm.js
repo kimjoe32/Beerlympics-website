@@ -37,7 +37,7 @@ class AddTeamMembersForm extends Component {
  AddTeamMembersForm = reduxForm({
     validate,
     destroyOnUnmount: false,
-    forceUnregisterOnUnmount: false,
+    // forceUnregisterOnUnmount: false,
     form: 'addTeamForm'
 })(AddTeamMembersForm);
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AddTeamForm from '../../containers/formContainers/addTeamForm';
 import { withRouter } from 'react-router-dom';
-//wrap the component to access withRouter to access the path_name
+//wrap the component to access withRouter to access the pathname
 const AddTeam = withRouter(props => <AddTeamA {...props}/>);
 class AddTeamA extends Component {
     render() {

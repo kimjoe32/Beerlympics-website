@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 import '../css/displayTeamData.css';
 import { getCode } from '../utils/utilities';
+import { Icon } from 'react-materialize';
 
 class DisplayTeamData extends Component {
 
@@ -27,7 +28,11 @@ class DisplayTeamData extends Component {
         return (
             <ul>
                 {this.props.teamMembers.map((teamMember) => {
-                    return (<li key={teamMember}>{teamMember}</li>)
+                    return (
+                        <li key={teamMember}>{teamMember} 
+                            {teamMember===this.props.captain && <Icon tiny>start </Icon>} 
+                        </li>
+                    )
                 })}
             </ul>
         )

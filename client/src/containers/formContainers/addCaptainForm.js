@@ -24,6 +24,7 @@ class AddCaptainForm extends Component {
     }
 
     render() {
+        const { isEditing } = this.props;
         return (
             <div>
                 <h5><i className="material-icons left">person</i>Add Captain Information</h5>
@@ -32,12 +33,14 @@ class AddCaptainForm extends Component {
                         <div className="col s6">
                             <Field fieldName="First Name"
                                 component={ FormInputField } 
+                                isEditing={ isEditing }
                                 id="firstName"
                                 type="text"
                                 name="firstName" />
                         </div>
                         <div className="col s6">
                             <Field fieldName="Last Name"
+                                isEditing={ isEditing }
                                 component={ FormInputField } 
                                 id="lastName"
                                 type="text"
@@ -71,6 +74,7 @@ class AddCaptainForm extends Component {
                         <div className="col s6">
                             <Field fieldName="Email Address"
                                 component={ FormInputField } 
+                                isEditing={ isEditing }
                                 id="email"
                                 type="text"
                                 name="email" /> 
@@ -78,6 +82,7 @@ class AddCaptainForm extends Component {
                         <div className="col s6">
                             <Field fieldName="Phone"
                                 component={ FormPhone }
+                                isEditing={ isEditing }
                                 id="phone"
                                 type="text"
                                 name="phone"
@@ -97,14 +102,34 @@ AddCaptainForm = reduxForm({
     asyncValidate: asyncValCountryName,
     asyncBlurFields: ['country'],
     destroyOnUnmount: false,
-    forceUnregisterOnUnmount: true,
-    form: 'addTeamForm'
+    // forceUnregisterOnUnmount: true,
+    form: 'addTeamForm',
+    enableReinitialize : true
 })(AddCaptainForm);
+
+function mapStateToProps (state) {
+    let selectedTeam = {};
+    for (var i = 0; i < state.allTeamsData.length; i++) {
+        if (state.allTeamsData[i].teamName === state.selectedEditTeam) {
+            const origSelectedTeam = state.allTeamsData[i];
+            selectedTeam.firstName = origSelectedTeam.captainInfo.captainName.split(' ')[0];
+            selectedTeam.lastName = origSelectedTeam.captainInfo.captainName.split(' ')[1];
+            selectedTeam.email = origSelectedTeam.captainInfo.captainEmail;
+            selectedTeam.phone = origSelectedTeam.captainInfo.captainPhone;
+            selectedTeam.teamMembers = origSelectedTeam.teamMembers;
+            selectedTeam.country = origSelectedTeam.teamName;
+            break;
+        }
+    }
+    console.log(selectedTeam);
+    return { initialValues: selectedTeam};
+}
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({change}, dispatch);
 }
 
 export default connect(
+    mapStateToProps,
     mapDispatchToProps
 )(AddCaptainForm);

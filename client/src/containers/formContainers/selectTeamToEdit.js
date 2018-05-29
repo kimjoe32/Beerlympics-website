@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon } from 'react-materialize';
 import EventCard from '../../components/EventsComponents/eventCard';
+import { reduxForm } from 'redux-form';
+import { selectTeam, getTeamData } from '../../actions/index';
+import { bindActionCreators } from 'redux';
 
 const submitBtnStyle = {
     marginTop:"5px"
@@ -15,8 +18,14 @@ class SelectTeamToEdit extends Component {
         };
     }
 
+    componentDidMount() {
+        this.props.getTeamData();
+    }
+
     clickedTeamCard(teamName) {
+        const { selectTeam } = this.props;
         this.setState({selectedTeam: teamName});
+        selectTeam(teamName);
     }
 
     checkSelected(teamName) {
@@ -48,7 +57,22 @@ class SelectTeamToEdit extends Component {
         );
     }
 }
+
+SelectTeamToEdit = reduxForm({
+    destroyOnUnmount: false,
+    forceUnregisterOnUnmount: false,
+    form: 'addTeamForm'
+})(SelectTeamToEdit);
+
+function mapDispatchToProps (dispatch) {
+    return bindActionCreators({ selectTeam, getTeamData }, dispatch);
+}
+
 function mapStateToProps ({ allTeamsData }) {
     return { allTeamsData };
 }
-export default connect(mapStateToProps)(SelectTeamToEdit);
+
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(SelectTeamToEdit);
