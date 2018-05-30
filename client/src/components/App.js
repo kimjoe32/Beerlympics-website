@@ -5,7 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import DisplayAllData from './displayAllData';
 import StartGame from '../containers/startGame';
-import AddTeam from './FormComponents/addTeam';
+import AddTeam from '../containers/formContainers/addTeam';
 import NavBar from './navBar';
 
 class App extends Component {

@@ -55,15 +55,14 @@ module.exports = {
     /*
         Add team to data file
     */
-    addTeam: function(teamInfo) {
-        // make sure team isn't already added. 
-        let teams = this.getTeamObject();
+    addTeam: function(teamInfo) {        
         // only for QA testing, team input form should have async validation
-        if (!this.isCountryAvail(teamInfo.country)) 
+        if (!this.isCountryAvail(teamInfo.country) && !teamInfo.isEditing) 
             return 'country is taken'; 
+        let teams = this.getTeamObject();
         
-        const captainName= teamInfo.firstName + ' ' + teamInfo.lastName;
-        teams.push({
+        const captainName = teamInfo.firstName + ' ' + teamInfo.lastName;
+        newTeam= {
             "teamName": teamInfo.country,
             "teamMembers": teamInfo.teamMembers,
             "wins": 0,
@@ -74,7 +73,17 @@ module.exports = {
                 "captainEmail": teamInfo.email,
                 "captainPhone": teamInfo.phone
             }
-        });
+        };
+
+        //delete old team (if editing a team) and insert new team
+        if (teamInfo.isEditing) {
+            var i = teams.findIndex(o => o.teamName === teamInfo.country);
+            if (teams[i]) { 
+                teams[i] = newTeam; 
+            }
+        } else {
+            teams.push(newTeam);
+        }
         this.writeToTeamDataFile(teams);
         return;
     },

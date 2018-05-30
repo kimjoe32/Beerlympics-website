@@ -17,6 +17,10 @@ import { getCountriesObj } from '../../utils/utilities';
         Phone Number
 */
 class AddCaptainForm extends Component {
+    componentWillMount() {
+        this.props.change('isEditing', this.props.isEditing);
+    } 
+
     handleCountrySelection=(value, type) => {
         if (type==="country" && value !== []) {
             this.props.change('country', value);
@@ -27,7 +31,7 @@ class AddCaptainForm extends Component {
         const { isEditing } = this.props;
         return (
             <div>
-                <h5><i className="material-icons left">person</i>Add Captain Information</h5>
+                <h5><i className="material-icons left">person</i>{`${isEditing? 'Edit': 'Add'} Captain Information`} </h5>
                 <form onSubmit={this.props.handleSubmit}>
                     <div className="row">
                         <div className="col s6">
@@ -121,7 +125,6 @@ function mapStateToProps (state) {
             break;
         }
     }
-    console.log(selectedTeam);
     return { initialValues: selectedTeam};
 }
 

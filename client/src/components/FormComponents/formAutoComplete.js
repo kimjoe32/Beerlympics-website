@@ -18,6 +18,7 @@ export default({ input,
     return (
         <div>
             <Autocomplete
+                className="active"
                 {...input}
                 style={ style }
                 data={ data }

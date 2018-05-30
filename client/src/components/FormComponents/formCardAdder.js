@@ -32,11 +32,12 @@ class FormCardAdder extends Component {
     handleEnterPress(e) {
         //user submits a new card by pressing enter
         if (e.key === 'Enter') {
-            const newNames = this.state.names.concat(e.target.value);
+            const { names } = this.state;
+            const newNames = names.concat(e.target.value);
 
             //add name to list if not already in list, less than 4 inputted names, make sure not a blank input
-            if(this.state.names.indexOf(e.target.value) === -1 &&
-                this.state.names.length < 4 &&
+            if(names.indexOf(e.target.value) === -1 &&
+                names.length < 4 &&
                 e.target.value !== '') {
                 this.setState({names: newNames});
                 const { onCardChange, fieldName } = this.props;
@@ -45,6 +46,7 @@ class FormCardAdder extends Component {
             //clear input field
             this.setState({inputText:''});
             e.preventDefault();
+            console.log('enter', names);
         }
     }
 
@@ -62,6 +64,7 @@ class FormCardAdder extends Component {
             const { onCardChange, fieldName } = this.props;
             onCardChange(newState, fieldName);
         }
+        console.log('deleted', this.state.names);
     }
 
     render() {

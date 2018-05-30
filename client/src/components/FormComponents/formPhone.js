@@ -4,9 +4,10 @@ import React from 'react';
     Phone number input
 */
 
-export default({ input, label, id, fieldName, meta: { error, touched }}) => {
+export default({ input, label, id, fieldName, isEditing, meta: { error, touched }}) => {
+    const isActive = isEditing ? 'active' : '';
     return (
-        <div className="input-field active">
+        <div className={`input-field ${isActive}`}>
             <i className="material-icons prefix">phone</i>
             <input {...input} 
                 type="tel" 
@@ -16,7 +17,7 @@ export default({ input, label, id, fieldName, meta: { error, touched }}) => {
                     if (e.key === 'Enter') e.preventDefault();
                 }
             }/>
-            <label className="active" htmlFor={ id }>{ fieldName }</label>
+            <label className={isActive} htmlFor={ id }>{ fieldName }</label>
             <div className="red-text" style = {{ marginBottom: '20px', marginLeft:'45px' }}>
                 {touched && error}
             </div>

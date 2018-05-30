@@ -23,9 +23,8 @@ class SelectTeamToEdit extends Component {
     }
 
     clickedTeamCard(teamName) {
-        const { selectTeam } = this.props;
         this.setState({selectedTeam: teamName});
-        selectTeam(teamName);
+        this.props.selectTeam(teamName);
     }
 
     checkSelected(teamName) {
@@ -40,10 +39,10 @@ class SelectTeamToEdit extends Component {
                 <div>
                     { this.props.allTeamsData.map( ({ teamName }) => {
                         return(
-                            <EventCard key={teamName}
-                                eventName={teamName}
-                                isSelected={this.checkSelected(teamName)}
-                                onClick={() => this.clickedTeamCard(teamName)}
+                            <EventCard key={ teamName }
+                                eventName={ teamName }
+                                isSelected={ this.checkSelected(teamName) }
+                                onClick={ () => this.clickedTeamCard(teamName) }
                             />
                         );
                     })}

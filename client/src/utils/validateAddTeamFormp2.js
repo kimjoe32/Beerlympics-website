@@ -7,7 +7,6 @@ export const validate = values => {
     if (!values.firstName) {
         errors.firstName = 'Required';
     }
-
     if (!values.lastName) {
         errors.lastName = 'Required';
     }
@@ -33,15 +32,28 @@ export const validate = values => {
     //too short or didn't enter 7/10 digit phone number
     if (!values.phone) {
         errors.phone = 'Required'
-    } else if (values.phone.length !== 10 && values.phone.length !== 7) {
-        errors.phone = 'Not valid phone number';
+    } else {
+        const rawNum = values.phone.replace(/[^0-9]/, '');
+        if (rawNum.length !== 10 && rawNum.length !== 7 && rawNum.isNaN()) {
+            errors.phone = 'Not valid phone number';
+        }
     }
     return errors;
 }
 
 export const asyncValCountryName = (values, dispatch)=>  {
     //returns if country name is available
-    const { country } = values;
+    const { country, isEditing } = values;
+    console.log(isEditing);
+    if (isEditing) {
+        console.log('ignoring country name');
+        return new Promise( (resolve, reject) => {
+            return resolve();
+        });
+    }
+    else {
+        console.log('checking country name');
+    }
     // console.log(country);
     return Axios.post('/api/isCountryAvail', {country})
         .then(response => {

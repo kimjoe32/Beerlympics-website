@@ -10,7 +10,7 @@ export default({ input, label, id, fieldName, isEditing, meta: { error, touched 
             <input {...input} id={ id } type="text" onKeyPress={ e => {
                 if (e.key === 'Enter') e.preventDefault();
             }}/>
-            <label className="active" htmlFor={ id }>{ fieldName }</label>
+            <label className={isActive} htmlFor={ id }>{ fieldName }</label>
             <div className="red-text" style = {{ marginBottom: '20px' }}>
                 {touched && error}
             </div>   
