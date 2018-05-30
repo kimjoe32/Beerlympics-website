@@ -18,13 +18,13 @@ export default({ input,
     return (
         <div>
             <Autocomplete
-                className="active"
+                active={true}
                 {...input}
                 style={ style }
                 data={ data }
                 title={ title }
                 type="select"
-                limit={5}
+                limit={ 5 }
                 onKeyPress={ onKeyPress }
                 onAutocomplete={ (value) => {updateCountry(value)} }
             />

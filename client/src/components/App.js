@@ -7,6 +7,7 @@ import DisplayAllData from './displayAllData';
 import StartGame from '../containers/startGame';
 import AddTeam from '../containers/formContainers/addTeam';
 import NavBar from './navBar';
+import Footer from './footer';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/start_game" component={StartGame} />
             <Route path="/add_team" component={AddTeam} />
             <Route path="/edit_team" render={() => <AddTeam />} />
+            <Footer />
 					</div>
 				</BrowserRouter>
       </div>
