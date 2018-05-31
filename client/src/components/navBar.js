@@ -39,6 +39,12 @@ class NavBar extends Component {
                                 <Link to="/edit_team" >
                                     <Icon left>edit</Icon>Edit a Team
                                 </Link>
+
+                                <div className="divider"></div>
+
+                                <Link to = "/team_settings">
+                                    <Icon left>settings</Icon>Settings
+                                </Link>
                             </Dropdown>
                         </li>
                     </ul>

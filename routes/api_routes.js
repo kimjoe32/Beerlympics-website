@@ -54,10 +54,12 @@ module.exports = app => {
   });
 
   app.get('/api/deleteTeam', async (req, res) => {
-
+    let successfulDel = utils_team.deleteTeam(req.body.teamName);
+    console.log('delete team', req.body.teamName, successfulDel);
+    res.send(successfulDel);
   });
 
-  app.post('/api/isCountryAvail', async(req, res) => {
+  app.post('/api/isCountryAvail', (req, res) => {
     const taken = utils_team.isCountryAvail(req.body.country);
     console.log(req.body.country, taken);
     res.send(taken);

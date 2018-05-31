@@ -103,5 +103,17 @@ module.exports = {
 
     isTeamFileEmpty: function() {
         
+    },
+
+    deleteTeam: function(teamName) {
+        const teams = this.getTeamObject();
+        for (let i = 0; i < teams.length; i++) {
+            if (teams[i].teamName === teamName) {
+                teams.splice(i, 1);
+                this.writeToTeamDataFile(teams);
+                return true;
+            }
+        }
+        return false;
     }
 }

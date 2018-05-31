@@ -7,9 +7,9 @@ class Footer extends Component {
     render() {
         return (
             <div>
-            <div className="divider" />
                 <footer className="page-footer" style={pageFooterStyle}>
                     <div className="container">
+                    <div className="divider" />
                         <div className="row">
                             <div className="col l6 s12">
                                 <h5 className="black-text">Beerlympics</h5>
