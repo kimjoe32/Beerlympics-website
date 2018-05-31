@@ -10,7 +10,7 @@ export default({ input, label, id, fieldName, isEditing, meta: { error, touched 
         <div className={`input-field ${isActive}`}>
             <i className="material-icons prefix">phone</i>
             <input {...input} 
-                type="tel" 
+                type="number" 
                 id={ id } 
                 maxLength="10"
                 onKeyPress={ e => {

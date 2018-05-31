@@ -9,12 +9,12 @@ class Footer extends Component {
             <div>
                 <footer className="page-footer" style={pageFooterStyle}>
                     <div className="container">
-                    <div className="divider" />
+                    <div className="divider black" />
                         <div className="row">
                             <div className="col l6 s12">
                                 <h5 className="black-text">Beerlympics</h5>
                                 <p className="black-text text-lighten-4">Thanks for visiting. This is a personal project  of mine. If you notice any bugs, let me know!</p>
-                                <p className="black-text right"> - Joe </p>
+                                <p className="black-text"> - Joe </p>
                             </div>
                             <div className="col l4 offset-l2 s12">
                                 <h5 className="black-text">Links</h5>

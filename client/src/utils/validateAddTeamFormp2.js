@@ -34,7 +34,7 @@ export const validate = values => {
         errors.phone = 'Required'
     } else {
         const rawNum = values.phone.replace(/[^0-9]/, '');
-        if (rawNum.length !== 10 && rawNum.length !== 7 && rawNum.isNaN()) {
+        if (rawNum.length !== 10 && rawNum.length !== 7 ) {
             errors.phone = 'Not valid phone number';
         }
     }

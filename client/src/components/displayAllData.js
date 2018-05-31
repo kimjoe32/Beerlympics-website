@@ -7,11 +7,16 @@ import DisplayEventData from './EventsComponents/displayEventData';
         Team data (name, team members, wins, etc)
         Events: upcoming events (beer pong, etc.)
 */
+const dvdrStyle = {
+    marginTop:"5px",
+    marginBottom: "5px",
+}
 class DisplayAllData extends Component {
     render () {
         return (
         <div>
             <DisplayAllTeamsData />
+            <div className="divider" style={ dvdrStyle }/>
             <DisplayEventData />
         </div>
         );

@@ -106,12 +106,13 @@ AddCaptainForm = reduxForm({
     asyncValidate: asyncValCountryName,
     asyncBlurFields: ['country'],
     destroyOnUnmount: false,
-    // forceUnregisterOnUnmount: true,
+    forceUnregisterOnUnmount: true,
     form: 'addTeamForm',
     enableReinitialize : true
 })(AddCaptainForm);
 
 function mapStateToProps (state) {
+    if (!state.selectedEditTeam) return {};
     let selectedTeam = {};
     for (var i = 0; i < state.allTeamsData.length; i++) {
         if (state.allTeamsData[i].teamName === state.selectedEditTeam) {

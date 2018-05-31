@@ -39,7 +39,7 @@ let ReviewAddTeamForm = ({ formValues, previousPage, sendNewTeamData }) => {
             <Link to="/" 
                 className="green btn-flat right white-text waves-effect hoverable"
                 onClick={() => sendNewTeamData(formValues) } 
-            >
+                >
                 Submit
                 <i className="material-icons right">email</i>
             </Link>

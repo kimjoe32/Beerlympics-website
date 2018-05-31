@@ -53,8 +53,8 @@ module.exports = app => {
     res.send('Success');  
   });
 
-  app.get('/api/deleteTeam', async (req, res) => {
-    let successfulDel = utils_team.deleteTeam(req.body.teamName);
+  app.post('/api/deleteTeam', async (req, res) => {
+    let successfulDel = await utils_team.deleteTeam(req.body.teamName);
     console.log('delete team', req.body.teamName, successfulDel);
     res.send(successfulDel);
   });

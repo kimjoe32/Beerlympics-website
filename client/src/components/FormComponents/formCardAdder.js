@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Chip } from 'react-materialize';
 
 /*
     Creates input field that adds cards when 'enter' is pressed

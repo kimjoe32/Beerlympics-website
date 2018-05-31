@@ -3,7 +3,8 @@ import { GET_TEAM_DATA,
     GET_EVENTS, 
     SELECT_EVENT,
     START_GAME,
-    SELECTED_EDIT_TEAM } from './types';
+    SELECTED_EDIT_TEAM,
+    DELETE_TEAM } from './types';
 import Axios from 'axios';
 
 export const getTeamData = () => async dispatch => {
@@ -51,4 +52,13 @@ export const selectTeam = (team) => {
         type: SELECTED_EDIT_TEAM,
         payload: team
     };
+}
+
+export const deleteTeam = (teamName) => async dispatch => {
+    console.log('deleting team', teamName);
+    const res = await Axios.post("/api/deleteTeam", {teamName});
+    dispatch({
+        type:DELETE_TEAM,
+        payload:res
+    });
 }
