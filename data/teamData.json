@@ -1,35 +1,23 @@
 [
   {
-    "teamName": "Bahrain",
+    "id": "17a50c8502fbd10e7bea46822f98e64c",
+    "teamName": "Cayman Islands",
     "teamMembers": [
-      "agsefa fdsa"
+      "rack rackson",
+      "pen penson"
     ],
     "wins": 0,
     "losses": 0,
     "standing": 0,
     "captainInfo": {
-      "captainName": "fdsf fasf",
-      "captainEmail": "sgsgs@asdf.com",
-      "captainPhone": "1234567"
+      "captainName": "JOhn Johnson",
+      "captainEmail": "fasd@dsaf.com",
+      "captainPhone": "7894561"
     }
   },
   {
-    "teamName": "New Caledonia",
-    "teamMembers": [
-      "new1 newson1",
-      "new2 newson2"
-    ],
-    "wins": 0,
-    "losses": 0,
-    "standing": 0,
-    "captainInfo": {
-      "captainName": "New  Newson",
-      "captainEmail": "new@new.com",
-      "captainPhone": "1234567"
-    }
-  },
-  {
-    "teamName": "Jordan",
+    "id": "35304ce35fdab0ce983c3350f27417c4",
+    "teamName": "Sweden",
     "teamMembers": [
       "john1 johnson1",
       "john2 johnson2"

@@ -29,7 +29,7 @@ module.exports = app => {
   app.post('/api/addNewTeam', (req, res) => {
     const err = utils_team.addTeam(req.body);
     if (!err) {
-      console.log(utils_team.getTeamObject());
+      // console.log(utils_team.getTeamObject());
       res.send('Successfully submitted a team');
     } else {
       res.send(err);
@@ -54,14 +54,15 @@ module.exports = app => {
   });
 
   app.post('/api/deleteTeam', async (req, res) => {
-    let successfulDel = await utils_team.deleteTeam(req.body.teamName);
-    console.log('delete team', req.body.teamName, successfulDel);
-    res.send(successfulDel);
+    let newTeamObj = utils_team.deleteTeam(req.body.id);
+    utils_team.writeToTeamDataFile(newTeamObj);
+    // console.log('delete team', req.body.teamName, successfulDel);
+    res.send(newTeamObj !== null);
   });
 
   app.post('/api/isCountryAvail', (req, res) => {
     const taken = utils_team.isCountryAvail(req.body.country);
-    console.log(req.body.country, taken);
+    // console.log(req.body.country, taken);
     res.send(taken);
   });
 }

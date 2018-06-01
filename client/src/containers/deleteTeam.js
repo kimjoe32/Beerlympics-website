@@ -18,7 +18,7 @@ class DeleteTeam extends Component {
         };
     }
     deleteSelectedTeam (selectedEditTeam) {
-        console.log(selectedEditTeam);
+        // console.log(selectedEditTeam);
         if (selectedEditTeam) {
             this.props.deleteTeam(selectedEditTeam);
         } else {

@@ -7,7 +7,7 @@ import * as actions from '../../actions';
 /*
     Let user review all data before submitting
 */
-let ReviewAddTeamForm = ({ formValues, previousPage, sendNewTeamData }) => {
+let ReviewAddTeamForm = ({ formValues, previousPage, sendNewTeamData, selectedEditTeam }) => {
     function renderReviewField() {
         const values = [formValues.firstName + ' ' + formValues.lastName,
                         formValues.country,
@@ -38,7 +38,7 @@ let ReviewAddTeamForm = ({ formValues, previousPage, sendNewTeamData }) => {
             </button>
             <Link to="/" 
                 className="green btn-flat right white-text waves-effect hoverable"
-                onClick={() => sendNewTeamData(formValues) } 
+                onClick={() => {sendNewTeamData(formValues, selectedEditTeam)} } 
                 >
                 Submit
                 <i className="material-icons right">email</i>
@@ -49,7 +49,8 @@ let ReviewAddTeamForm = ({ formValues, previousPage, sendNewTeamData }) => {
 
 function mapStateToProps(state) {
 	return {
-		formValues: state.form.addTeamForm.values
+        formValues: state.form.addTeamForm.values,
+        selectedEditTeam: state.selectedEditTeam
 	};
 }
 

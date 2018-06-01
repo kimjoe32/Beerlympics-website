@@ -5,9 +5,9 @@ module.exports = {
         Sort by team wins and update team's standings
     */
     calculateStandings: function(teams) {
-        if (teams) {return;}
+        if (teams) return;
         
-        teams.sort((a,b) => { return b.wins - a.wins});
+        teams.sort((a,b) => { return b.wins - a.wins });
         
         //set first team to be in first place because we need to access previous team in for loop
         teams[0].standing = 1;
@@ -59,10 +59,11 @@ module.exports = {
         // only for QA testing, team input form should have async validation
         if (!this.isCountryAvail(teamInfo.country) && !teamInfo.isEditing) 
             return 'country is taken'; 
-        let teams = this.getTeamObject();
         
+        const crypto = require('crypto');
         const captainName = teamInfo.firstName + ' ' + teamInfo.lastName;
-        newTeam= {
+        newTeam = {
+            "id": crypto.randomBytes(16).toString("hex"),
             "teamName": teamInfo.country,
             "teamMembers": teamInfo.teamMembers,
             "wins": 0,
@@ -75,15 +76,14 @@ module.exports = {
             }
         };
 
+        let teams;
         //delete old team (if editing a team) and insert new team
-        if (teamInfo.isEditing) {
-            var i = teams.findIndex(o => o.teamName === teamInfo.country);
-            if (teams[i]) { 
-                teams[i] = newTeam; 
-            }
-        } else {
-            teams.push(newTeam);
-        }
+        console.log(teamInfo.isEditing, teamInfo.id);
+        if (teamInfo.isEditing && teamInfo.id) {
+            console.log('replace');
+            teams = this.deleteTeam(teamInfo.id);
+        } 
+        teams.push(newTeam);
         this.writeToTeamDataFile(teams);
         return;
     },
@@ -105,15 +105,15 @@ module.exports = {
         
     },
 
-    deleteTeam: function(teamName) {
+    deleteTeam: function(id) {
         const teams = this.getTeamObject();
         for (let i = 0; i < teams.length; i++) {
-            if (teams[i].teamName === teamName) {
+            if (teams[i].id === id) {
+                console.log('deleting team', teams[i].teamName)
                 teams.splice(i, 1);
-                this.writeToTeamDataFile(teams);
-                return true;
+                return teams;
             }
         }
-        return false;
+        return null;
     }
 }

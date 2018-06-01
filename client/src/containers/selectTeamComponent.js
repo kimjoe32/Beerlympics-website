@@ -15,24 +15,24 @@ class SelectTeamComponent extends Component {
         this.props.getTeamData();
     }
 
-    clickedTeamCard(teamName) {
-        this.setState({selectedTeam: teamName});
-        this.props.selectTeam(teamName);
+    clickedTeamCard(id) {
+        this.setState({selectedTeam: id});
+        this.props.selectTeam(id);
     }
 
-    checkSelected(teamName) {
-        return this.state.selectedTeam === teamName;
+    checkSelected(id) {
+        return this.state.selectedTeam === id;
     }
 
     render() {
         return (
             <div>
-                { this.props.allTeamsData.map( ({ teamName }) => {
+                { this.props.allTeamsData.map( ({ teamName, id }) => {
                     return(
-                        <EventCard key={ teamName }
+                        <EventCard key={ id }
                             eventName={ teamName }
-                            isSelected={ this.checkSelected(teamName) }
-                            onClick={ () => this.clickedTeamCard(teamName) }
+                            isSelected={ this.checkSelected(id) }
+                            onClick={ () => this.clickedTeamCard(id) }
                         />
                     );
                 })}

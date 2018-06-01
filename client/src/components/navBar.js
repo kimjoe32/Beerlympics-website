@@ -18,6 +18,11 @@ class NavBar extends Component {
                     <a href="/" className="brand-logo">Beerlympics</a>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li>
+                            <Link to="/display_data"> 
+                                <div>View Games</div>
+                            </Link>
+                        </li>
+                        <li>
                             <Link to="/start_game"> 
                                 <div>Start Game</div>
                             </Link> 

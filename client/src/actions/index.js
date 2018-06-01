@@ -15,7 +15,10 @@ export const getTeamData = () => async dispatch => {
     });
 }
 
-export const sendNewTeamData = (teamData) => async dispatch => {
+export const sendNewTeamData = (teamData, id) => async dispatch => {
+    console.log(id);
+    teamData.id=id;
+    console.log(teamData);
     const res = await Axios.post("/api/addNewTeam", teamData);
     dispatch({
         type:SEND_NEW_TEAM_DATA,
@@ -47,16 +50,16 @@ export const startGame = () => async dispatch => {
     });
 }
 
-export const selectTeam = (team) => {
+export const selectTeam = (id) => {
     return {
         type: SELECTED_EDIT_TEAM,
-        payload: team
+        payload: id
     };
 }
 
-export const deleteTeam = (teamName) => async dispatch => {
-    console.log('deleting team', teamName);
-    const res = await Axios.post("/api/deleteTeam", {teamName});
+export const deleteTeam = (id) => async dispatch => {
+    // console.log('deleting team', id);
+    const res = await Axios.post("/api/deleteTeam", {id});
     dispatch({
         type:DELETE_TEAM,
         payload:res

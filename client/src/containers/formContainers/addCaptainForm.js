@@ -115,7 +115,7 @@ function mapStateToProps (state) {
     if (!state.selectedEditTeam) return {};
     let selectedTeam = {};
     for (var i = 0; i < state.allTeamsData.length; i++) {
-        if (state.allTeamsData[i].teamName === state.selectedEditTeam) {
+        if (state.allTeamsData[i].id === state.selectedEditTeam) {
             const origSelectedTeam = state.allTeamsData[i];
             selectedTeam.firstName = origSelectedTeam.captainInfo.captainName.split(' ')[0];
             selectedTeam.lastName = origSelectedTeam.captainInfo.captainName.split(' ')[1];
