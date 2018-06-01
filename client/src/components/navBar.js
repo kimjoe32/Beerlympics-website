@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Dropdown, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import '../css/navBar.css';
-import 'materialize-css';
-import 'materialize-css/dist/css/materialize.min.css';
 
 const dropDownOptions= {
     constrainWidth: false,

@@ -12,5 +12,35 @@
       "captainEmail": "sgsgs@asdf.com",
       "captainPhone": "1234567"
     }
+  },
+  {
+    "teamName": "New Caledonia",
+    "teamMembers": [
+      "new1 newson1",
+      "new2 newson2"
+    ],
+    "wins": 0,
+    "losses": 0,
+    "standing": 0,
+    "captainInfo": {
+      "captainName": "New  Newson",
+      "captainEmail": "new@new.com",
+      "captainPhone": "1234567"
+    }
+  },
+  {
+    "teamName": "Jordan",
+    "teamMembers": [
+      "john1 johnson1",
+      "john2 johnson2"
+    ],
+    "wins": 0,
+    "losses": 0,
+    "standing": 0,
+    "captainInfo": {
+      "captainName": "john johnson",
+      "captainEmail": "john@john.com",
+      "captainPhone": "1234567789"
+    }
   }
 ]
