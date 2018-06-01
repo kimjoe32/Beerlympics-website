@@ -9,6 +9,7 @@ import AddTeam from '../containers/formContainers/addTeam';
 import NavBar from './navBar';
 import Footer from './footer';
 import DeleteTeam from '../containers/deleteTeam';
+import Landing from './landing';
 
 const appStyle= {
   minHeight: "100vh"
@@ -21,7 +22,8 @@ class App extends Component {
           <BrowserRouter>
             <div className="container">
               <NavBar />
-              <Route exact path="/" component={ DisplayAllData } />
+              <Route exact path="/" component={ Landing } />
+              <Route path="/display_data" component={ DisplayAllData } />
               <Route path="/start_game" component={ StartGame } />
               <Route path="/add_team" component={ AddTeam } />
               <Route path="/edit_team" render={ () => <AddTeam /> } />
