@@ -1,5 +1,7 @@
 const locations = require('./locations');
 const fs = require('fs');
+const mongoose = require('mongoose');
+const Team = mongoose.model('teams');
 module.exports = {
     /*
         Sort by team wins and update team's standings
@@ -36,34 +38,39 @@ module.exports = {
     },
 
     /*
-        Object containing all teams
+        Return object containing all teams
     */
-    getTeamObject: function() {
-        const filesize=fs.statSync(locations.TEAM_DATA_EXT).size;
-        let teams = [];
-        //if file not empty, add teams to teams array
-        if (filesize > 0) {
-            let data = JSON.parse(fs.readFileSync(locations.TEAM_DATA_EXT, 'utf8'));
+    getTeamObject: async function()  {
+        // const filesize=fs.statSync(locations.TEAM_DATA_EXT).size;
+        // let teams = [];
+        // if file not empty, add teams to teams array
+        // if (filesize > 0) {
+        //     let data = JSON.parse(fs.readFileSync(locations.TEAM_DATA_EXT, 'utf8'));
 
-            for(a in data) {
-                teams.push(data[a])
-            }
-        }
+        //     for(a in data) {
+        //         teams.push(data[a])
+        //     }
+        // }
+        
+        let teams = await Team.find(function(err, results) {
+            if(err) console.log(err);
+            return results;
+        });
+        
         return teams;
     },
 
     /*
         Add team to data file
     */
-    addTeam: function(teamInfo) {        
+    addTeam: async function(teamInfo) {        
         // only for QA testing, team input form should have async validation
-        if (!this.isCountryAvail(teamInfo.country) && !teamInfo.isEditing) 
+        if (!this.isCountryAvail(teamInfo.country) && !teamInfo.isEditing) {
+            console.log('teamName taken');
             return 'country is taken'; 
-        
-        const crypto = require('crypto');
+        }
         const captainName = teamInfo.firstName + ' ' + teamInfo.lastName;
         newTeam = {
-            "id": crypto.randomBytes(16).toString("hex"),
             "teamName": teamInfo.country,
             "teamMembers": teamInfo.teamMembers,
             "wins": 0,
@@ -76,23 +83,21 @@ module.exports = {
             }
         };
 
-        let teams;
         //delete old team (if editing a team) and insert new team
-        console.log(teamInfo.isEditing, teamInfo.id);
         if (teamInfo.isEditing && teamInfo.id) {
-            console.log('replace');
-            teams = this.deleteTeam(teamInfo.id);
-        } 
+            await this.deleteTeam(teamInfo.id);
+        }
         teams.push(newTeam);
-        this.writeToTeamDataFile(teams);
+        this.writeTeamToDB(newTeam);
+        // this.writeToTeamDataFile(teams);
         return;
     },
 
     /*
         Check if the country name is in use
     */
-    isCountryAvail: function(countryName) {
-        const teams = this.getTeamObject();
+    isCountryAvail: async function(countryName) {
+        const teams = await this.getTeamObject();
         for (let i = 0; i < teams.length; i++) {
             if (teams[i].teamName === countryName) {
                 return false;
@@ -105,15 +110,24 @@ module.exports = {
         
     },
 
-    deleteTeam: function(id) {
-        const teams = this.getTeamObject();
+    deleteTeam: async function(id) {
+        const teams = await this.getTeamObject();
         for (let i = 0; i < teams.length; i++) {
             if (teams[i].id === id) {
-                console.log('deleting team', teams[i].teamName)
+                // console.log('deleting team', teams[i].teamName)
                 teams.splice(i, 1);
-                return teams;
             }
         }
-        return null;
+        let deletedTeam = await Team.findOneAndRemove({
+            _id: id
+        });
+        return deletedTeam;
+    },
+    
+    /*
+        Create new team schema and push to mongo
+    */
+    writeTeamToDB: function(teamData) {
+        new Team(teamData).save();
     }
 }

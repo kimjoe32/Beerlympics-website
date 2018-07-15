@@ -16,7 +16,9 @@ class DisplayEventCards extends Component {
                 if (!events) return null;
                 
                 return (
-                    <EventCard key={events.eventName} 
+                    <EventCard 
+                        className="z-depth-0"
+                        key={events.eventName} 
                         eventName={events.eventName} 
                         isSelected={selectedEvent === events.eventName}
                         onClick={() => selectEvent(events.eventName)}

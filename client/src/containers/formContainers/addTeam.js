@@ -19,6 +19,7 @@ class AddTeamA extends Component {
         this.setState({
             isEditing: this.props.location.pathname.includes('edit')
         });
+        console.log(this.props.location.pathname.includes('edit'));
         if (!this.state.isEditing) {
             this.props.selectTeam('');
         }

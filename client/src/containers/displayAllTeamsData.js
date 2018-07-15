@@ -13,7 +13,7 @@ class DisplayAllTeamsData extends Component {
     renderData(team) {
         if (!team) return;
         return (
-            <DisplayTeamData key={team.id}
+            <DisplayTeamData key={team._id}
                 teamName={team.teamName} 
                 teamMembers={team.teamMembers.concat([team.captainInfo.captainName])}
                 wins={team.wins}

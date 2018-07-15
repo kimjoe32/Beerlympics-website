@@ -19,7 +19,6 @@ module.exports = app => {
   app.get('/api/getTeamData', async (req, res) => {
     let data = await utils_team.getTeamObject();
     utils_team.calculateStandings(data);
-    
     res.json(data);
   });
 
@@ -60,9 +59,8 @@ module.exports = app => {
     res.send(newTeamObj !== null);
   });
 
-  app.post('/api/isCountryAvail', (req, res) => {
-    const taken = utils_team.isCountryAvail(req.body.country);
-    // console.log(req.body.country, taken);
+  app.post('/api/isCountryAvail', async (req, res) => {
+    const taken = await utils_team.isCountryAvail(req.body.country);
     res.send(taken);
   });
 }

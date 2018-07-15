@@ -60,10 +60,12 @@ export const asyncValCountryName = (values, dispatch)=>  {
             // console.log(response);
             return new Promise( (resolve, reject) => {
                 if (!response.data) {
+                    // console.log('rejected team name');
                     return reject({country: 'Country is taken'});
                     //reject(({country: 'Country is taken'}));
                 }
                 else {
+                    // console.log('accepted team name');
                     return resolve();
                 }
             });        

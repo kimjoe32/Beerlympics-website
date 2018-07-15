@@ -56,7 +56,7 @@ function mapStateToProps(state) {
 
 ReviewAddTeamForm = reduxForm({
     form: 'addTeamForm',
-    destroyOnUnmount: false,
+    destroyOnUnmount: true,
     forceUnregisterOnUnmount: true
     // validate
 })(ReviewAddTeamForm)

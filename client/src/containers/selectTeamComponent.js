@@ -27,12 +27,13 @@ class SelectTeamComponent extends Component {
     render() {
         return (
             <div>
-                { this.props.allTeamsData.map( ({ teamName, id }) => {
+                { this.props.allTeamsData.map( ({ teamName, _id }) => {
                     return(
-                        <EventCard key={ id }
+                        <EventCard 
+                            key={ _id }
                             eventName={ teamName }
-                            isSelected={ this.checkSelected(id) }
-                            onClick={ () => this.clickedTeamCard(id) }
+                            isSelected={ this.checkSelected(_id) }
+                            onClick={ () => this.clickedTeamCard(_id) }
                         />
                     );
                 })}

@@ -6,9 +6,9 @@ const cardStyle = {
 }
 class EventCard extends Component {
     render() {
-        const {eventName, onClick, isSelected} = this.props;
+        const {eventName, onClick, isSelected, className} = this.props;
         return (
-            <div className={`card-panel ${isSelected? "blue lighten-3": "teal"}`}
+            <div className={`card-panel ${isSelected? "blue lighten-3": "teal"} ${className}`}
                 onClick={onClick}
                 style={cardStyle}
             >
