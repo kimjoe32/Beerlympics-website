@@ -17,8 +17,8 @@ module.exports = app => {
     Return json file containing team states
   */
   app.get('/api/getTeamData', async (req, res) => {
-    let data = await utils_team.getTeamObject();
-    utils_team.calculateStandings(data);
+    let data = await utils_team.calculateStandings();
+    console.log(data);
     res.json(data);
   });
 
@@ -48,7 +48,6 @@ module.exports = app => {
     If we can start game, return success, and event schedule
   */
   app.get('/api/startGame', async (req, res) => {
-
     res.send('Success');  
   });
 
@@ -61,6 +60,6 @@ module.exports = app => {
 
   app.post('/api/isCountryAvail', async (req, res) => {
     const taken = await utils_team.isCountryAvail(req.body.country);
-    res.send(taken);
+    res.send(taken === null);
   });
 }

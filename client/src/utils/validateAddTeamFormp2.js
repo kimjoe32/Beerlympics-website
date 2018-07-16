@@ -33,8 +33,8 @@ export const validate = values => {
     if (!values.phone) {
         errors.phone = 'Required'
     } else {
-        const rawNum = values.phone.replace(/[^0-9]/, '');
-        if (rawNum.length !== 10 && rawNum.length !== 7 ) {
+        const rawNum = values.phone.toString().replace(/[^0-9]/, '');
+        if (rawNum.length !== 10) {
             errors.phone = 'Not valid phone number';
         }
     }

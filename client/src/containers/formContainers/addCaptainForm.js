@@ -113,10 +113,12 @@ AddCaptainForm = reduxForm({
 
 function mapStateToProps (state) {
     if (!state.selectedEditTeam) return {};
+
     let selectedTeam = {};
     for (var i = 0; i < state.allTeamsData.length; i++) {
-        if (state.allTeamsData[i].id === state.selectedEditTeam) {
+        if (state.allTeamsData[i]._id === state.selectedEditTeam) {
             const origSelectedTeam = state.allTeamsData[i];
+            selectedTeam._id = origSelectedTeam._id;
             selectedTeam.firstName = origSelectedTeam.captainInfo.captainName.split(' ')[0];
             selectedTeam.lastName = origSelectedTeam.captainInfo.captainName.split(' ')[1];
             selectedTeam.email = origSelectedTeam.captainInfo.captainEmail;

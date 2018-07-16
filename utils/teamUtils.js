@@ -1,14 +1,12 @@
-const locations = require('./locations');
-const fs = require('fs');
 const mongoose = require('mongoose');
 const Team = mongoose.model('teams');
 module.exports = {
     /*
         Sort by team wins and update team's standings
     */
-    calculateStandings: function(teams) {
-        if (teams) return;
-        
+    calculateStandings: async function() {
+        let teams = await this.getTeamObject();
+        if (!teams) return;
         teams.sort((a,b) => { return b.wins - a.wins });
         
         //set first team to be in first place because we need to access previous team in for loop
@@ -19,44 +17,26 @@ module.exports = {
             if (teams[i].wins < teams[i - 1].wins) {
                 standingPlace++;
                 teams[i].standing = standingPlace;
-                continue;
             }
             //this team is tied in wins with the previous team
-            teams[i].standing = standingPlace;
+            else {
+                teams[i].standing = standingPlace;
+            }
+            Team.findOneAndUpdate(
+                {_id: teams[i]._id},
+                {standing: teams[i].standing}  
+            );
         }
-
-        this.writeToTeamDataFile(teams);
+        return teams;
     },
-
-    /*
-        Write to team_data file
-    */
-    writeToTeamDataFile: function(newFile) {
-        fs.writeFileSync(locations.TEAM_DATA_EXT, JSON.stringify(newFile, null, 2), function (err) {
-            if (err) return err;
-        });
-    },
-
     /*
         Return object containing all teams
     */
     getTeamObject: async function()  {
-        // const filesize=fs.statSync(locations.TEAM_DATA_EXT).size;
-        // let teams = [];
-        // if file not empty, add teams to teams array
-        // if (filesize > 0) {
-        //     let data = JSON.parse(fs.readFileSync(locations.TEAM_DATA_EXT, 'utf8'));
-
-        //     for(a in data) {
-        //         teams.push(data[a])
-        //     }
-        // }
-        
         let teams = await Team.find(function(err, results) {
             if(err) console.log(err);
             return results;
         });
-        
         return teams;
     },
 
@@ -87,9 +67,7 @@ module.exports = {
         if (teamInfo.isEditing && teamInfo.id) {
             await this.deleteTeam(teamInfo.id);
         }
-        teams.push(newTeam);
         this.writeTeamToDB(newTeam);
-        // this.writeToTeamDataFile(teams);
         return;
     },
 
@@ -97,27 +75,11 @@ module.exports = {
         Check if the country name is in use
     */
     isCountryAvail: async function(countryName) {
-        const teams = await this.getTeamObject();
-        for (let i = 0; i < teams.length; i++) {
-            if (teams[i].teamName === countryName) {
-                return false;
-            }
-        }
-        return true;
-    },
-
-    isTeamFileEmpty: function() {
-        
+        let team = await Team.findOne({teamName: countryName});
+        return team;
     },
 
     deleteTeam: async function(id) {
-        const teams = await this.getTeamObject();
-        for (let i = 0; i < teams.length; i++) {
-            if (teams[i].id === id) {
-                // console.log('deleting team', teams[i].teamName)
-                teams.splice(i, 1);
-            }
-        }
         let deletedTeam = await Team.findOneAndRemove({
             _id: id
         });
